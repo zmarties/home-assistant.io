@@ -348,14 +348,7 @@ homekit:
 ```
 
 Restart your Home Assistant instance. This feature requires running an mDNS forwarder on your Docker host, e.g., `avahi-daemon` in reflector mode. This kind of setup most likely requires `safe_mode` during the bridge setup.
-
-## Troubleshooting
-
-If you see a traceback mentioning `zeroconf.NonUniqueNameException` in your log you likely need to
-enable `zeroconf_default_interface: true` and set a unique name `name: MyHASS42`.
-  
-If you had previously paired (even unsuccessfully), you may need to delete your `.homekit.state` file in order to able to successfully pair again.
-  
+ 
 ## Supported Components
 
 The following integrations are currently supported:
@@ -444,6 +437,10 @@ Configure the network mode as `networkbridge`. Otherwise the Home Assistant Brid
 #### Pairing hangs - zeroconf error
 
 Pairing eventually fails, you might see and an error message `NonUniqueNameException`. Add the `safe_mode` option to your configuration, see [safe_mode](#safe-mode).
+
+If [safe_mode](#safe-mode) is not successful, you likely need to enable `zeroconf_default_interface: true` and set a unique name such as `name: MyHASS42`.
+  
+If you had previously paired (even unsuccessfully), you may need to delete your `.homekit.state` file in order to able to successfully pair again. See [Errors during pairing](#errors-during-pairing).
 
 #### Pairing hangs - only works with debug configuration
 
